@@ -13,14 +13,14 @@ namespace MakingSense
 
         }
 
-        public Car(int Id,string Modelo, int Puertas, string Color, string CajaCambio)
+        public Car(int Id, string Modelo, int Puertas, string Color, string CajaCambio)
         {
             this.Id = Id;
             this.Modelo = Modelo;
             this.Puertas = Puertas;
-            this.Color  = Color;
+            this.Color = Color;
             this.CajaCambio = CajaCambio;
-         }
+        }
 
 
         private int Id;
@@ -30,32 +30,13 @@ namespace MakingSense
         private string CajaCambio;
 
 
-        public int id
-        {
-            get { return Id; }
-            set { Id = value; }
-        }
-        public int puertas
-        {
-            get { return Puertas; }
-            set { Puertas = value; }
-        }
-        public string color
-        {
-            get { return Color; }
-            set { Color = value; }
-        }
-        public string cajaCambio
-        {
-            get { return CajaCambio; }
-            set { CajaCambio = value; }
-        }
-        public string modelo
-        {
-            get { return Modelo; }
-            set { Modelo = value; }
-        }
+        public int id  { get; set;}
+        public int puertas{ get; set; }
+        public string color { get; set; }
 
+        public string cajaCambio { get; set; }
+
+        public string modelo { get; set; }
 
     }
 }
