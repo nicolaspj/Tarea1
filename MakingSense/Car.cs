@@ -10,17 +10,21 @@ namespace MakingSense
     {
         public Car()
         {
-
+             Modelo = modelo;
+             Puertas = puertas;
+             Id = id;
+             Color = color;
+             CajaCambio = cajaCambio;
         }
 
-        public Car(int Id, string Modelo, int Puertas, string Color, string CajaCambio)
-        {
-            this.Id = Id;
-            this.Modelo = Modelo;
-            this.Puertas = Puertas;
-            this.Color = Color;
-            this.CajaCambio = CajaCambio;
-        }
+        //public Car(int Id, string Modelo, int Puertas, string Color, string CajaCambio)
+        //{
+        //    this.Id = Id;
+        //    this.Modelo = Modelo;
+        //    this.Puertas = Puertas;
+        //    this.Color = Color;
+        //    this.CajaCambio = CajaCambio;
+        //}
 
 
         private int Id;
