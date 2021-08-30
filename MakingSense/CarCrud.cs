@@ -1,5 +1,6 @@
 using System;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,52 +11,75 @@ namespace MakingSense
 {
     class CarCrud
     {
-
-        public Car Create(Car car)
-           {
-            
+        //public Car(int Id, string Modelo, int Puertas, string Color, string CajaCambio)
+        //{
+        //    this.Id = Id;
+        //    this.Modelo = Modelo;
+        //    this.Puertas = Puertas;
+        //    this.Color = Color;
+        //    this.CajaCambio = CajaCambio;
+        //}
+        public Car Create(int Id, string Modelo, int Puertas, string Color, string CajaCambio)
+        {
+            var newCar = new Car();
             Console.WriteLine("Ingrese una nueva ID ");
-            car.id = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Ingrese una marca de auto");
-            car.cajaCambio = Console.ReadLine();
-            Console.WriteLine("Ingrese color de auto ");
-            car.color = Console.ReadLine();
-            Console.WriteLine("Ingrese modelo de auto (automatico / manual) ");
-            car.modelo = Console.ReadLine();
-            Console.WriteLine("Ingrese la cantidad de puertas del auto ");
-            car.puertas = Convert.ToInt32(Console.ReadLine());
-            string json1 = JsonSerializer.Serialize(car);
+            //newCar.d = Convert.ToInt32(Console.ReadLine());
+            //Console.WriteLine("Ingrese una marca de auto");
+            //newCar.cajaCambio = Console.ReadLine();
+            //Console.WriteLine("Ingrese color de auto ");
+            //newCar.color = Console.ReadLine();
+            //Console.WriteLine("Ingrese modelo de auto (automatico / manual) ");
+            //newCar.modelo = Console.ReadLine();
+            //Console.WriteLine("Ingrese la cantidad de puertas del auto ");
+            //newCar.puertas = Convert.ToInt32(Console.ReadLine());
+            newCar.id = Id;
+            newCar.modelo = Modelo;
+            newCar.puertas = Puertas;
+            newCar.color = Color;
+            newCar.cajaCambio = CajaCambio;
+            string json1 = JsonSerializer.Serialize(newCar);
             string FileName = @"C:\Users\nico_\Desktop\proyectos\Tarea1\MakingSense\Json\json1.json";
             File.WriteAllText(FileName, json1);
             Console.WriteLine(json1);
-           
-            return car;
+            
+            return newCar;
            }
 
-            public int BuscarJson (int id)
+            public int Get(int id)
              {
-            int Id = id;
-            string FileJson = @"C:\Users\nico_\Desktop\proyectos\Tarea1\MakingSense\Json\json1.json";
-            StreamReader read = new StreamReader(FileJson);
-            var json = read.ReadToEnd();
+            
+                 string FileJson = @"C:\Users\nico_\Desktop\proyectos\Tarea1\MakingSense\Json\json1.json";
+                 string JsonFile;
+                 int i = id;
+                 using( var reader = new StreamReader(FileJson))
+                 {
+                       JsonFile = reader.ReadToEnd();
+                 }
+                
+                var auto = JsonSerializer.Deserialize<Car>(JsonFile);
+                if ( i == auto.id )
+                 {
+                    
+                   
+                    Console.WriteLine(auto.id);
+                    Console.WriteLine(auto.modelo);
+                    Console.WriteLine(auto.color);
+                    Console.WriteLine(auto.cajaCambio);
+                    Console.WriteLine(auto.puertas);
+                    
+                 }
+            return i;
+            }
 
-            return Id;
-             }
-            public Car Get(int id)
+            
+        /*    public Car Get(int id)
             {
             
-            var Id = id;
-            Console.WriteLine("*******************\n");
-            Console.WriteLine("Ingrese un Id para Buscar Infomacion del auto\n");
-            int i = Id; 
-            i = Convert.ToInt32(Console.ReadLine());
             
-            BuscarJson(i);
-
-            return i;
+         
             
             }
-           
+         */  
     }
 
 
