@@ -1,63 +1,54 @@
-using System;
-using System.Text.Json;
-using System.IO;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace MakingSense
 {
     class CarCrud
     {
-
         public Car Create(Car car)
-           {
-            
-            Console.WriteLine("Ingrese una nueva ID ");
-            car.id = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Ingrese una marca de auto");
-            car.cajaCambio = Console.ReadLine();
-            Console.WriteLine("Ingrese color de auto ");
-            car.color = Console.ReadLine();
-            Console.WriteLine("Ingrese modelo de auto (automatico / manual) ");
-            car.modelo = Console.ReadLine();
-            Console.WriteLine("Ingrese la cantidad de puertas del auto ");
-            car.puertas = Convert.ToInt32(Console.ReadLine());
-            string json1 = JsonSerializer.Serialize(car);
+        {
+            Car newCar = car;
+            newCar.CajaCambio = car.CajaCambio;
+            newCar.Color = car.Color;
+            newCar.Id = car.Id;
+            newCar.Modelo = car.Modelo;
+            newCar.Puertas = car.Puertas;
+            string json1 = JsonSerializer.Serialize(newCar);
             string FileName = @"C:\Users\nico_\Desktop\proyectos\Tarea1\MakingSense\Json\json1.json";
             File.WriteAllText(FileName, json1);
+            Console.Clear();
             Console.WriteLine(json1);
-           
-            return car;
-           }
+            
+            return newCar;
+        }
 
-            public int BuscarJson (int id)
-             {
-            int Id = id;
+        public int Get(int id)
+        {
+
             string FileJson = @"C:\Users\nico_\Desktop\proyectos\Tarea1\MakingSense\Json\json1.json";
-            StreamReader read = new StreamReader(FileJson);
-            var json = read.ReadToEnd();
-
-            return Id;
-             }
-            public Car Get(int id)
+            string JsonFile;
+            int i = id;
+            using (var reader = new StreamReader(FileJson))
             {
-            
-            var Id = id;
-            Console.WriteLine("*******************\n");
-            Console.WriteLine("Ingrese un Id para Buscar Infomacion del auto\n");
-            int i = Id; 
-            i = Convert.ToInt32(Console.ReadLine());
-            
-            BuscarJson(i);
-
-            return i;
-            
+                JsonFile = reader.ReadToEnd();
             }
-           
+
+            var auto = JsonSerializer.Deserialize<Car>(JsonFile);
+            if (i == auto.Id)
+            {
+                Console.Clear();
+                Console.WriteLine(auto.Id);
+                Console.WriteLine(auto.Modelo);
+                Console.WriteLine(auto.Color);
+                Console.WriteLine(auto.CajaCambio);
+                Console.WriteLine(auto.Puertas);
+            }
+            return i;
+        }
     }
-
-
 }
-

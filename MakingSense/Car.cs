@@ -6,56 +6,16 @@ using System.Threading.Tasks;
 
 namespace MakingSense
 {
-    class Car
+    public class Car
     {
-        public Car()
-        {
 
-        }
+        public int Id  { get; set;}
+        public int Puertas{ get; set; }
+        public string Color { get; set; }
 
-        public Car(int Id,string Modelo, int Puertas, string Color, string CajaCambio)
-        {
-            this.Id = Id;
-            this.Modelo = Modelo;
-            this.Puertas = Puertas;
-            this.Color  = Color;
-            this.CajaCambio = CajaCambio;
-         }
+        public string CajaCambio { get; set; }
 
-
-        private int Id;
-        private string Modelo;
-        private int Puertas;
-        private string Color;
-        private string CajaCambio;
-
-
-        public int id
-        {
-            get { return Id; }
-            set { Id = value; }
-        }
-        public int puertas
-        {
-            get { return Puertas; }
-            set { Puertas = value; }
-        }
-        public string color
-        {
-            get { return Color; }
-            set { Color = value; }
-        }
-        public string cajaCambio
-        {
-            get { return CajaCambio; }
-            set { CajaCambio = value; }
-        }
-        public string modelo
-        {
-            get { return Modelo; }
-            set { Modelo = value; }
-        }
-
+        public string Modelo { get; set; }
 
     }
 }
